@@ -31,8 +31,9 @@ public class PrimeDecompositionOfInteger {
         int i;
         StringBuilder sb = new StringBuilder();
         for(i = 2; n>0 ; i++) {
+            if(!isPrime(i)) continue;
             iterations=0;
-            while(n%i==0) {
+            while(n%i==0 && n%i!=n) {
                 n/=i;
                 iterations++;
             }
@@ -41,6 +42,25 @@ public class PrimeDecompositionOfInteger {
             }
         }
         return sb.toString();
+    }
+
+    private static boolean isPrime(int n){
+        for(int i=2; i<n ;i++){
+            if(n%i==0) return false;
+        }
+        return true;
+    }
+
+    public static int nextPrime(int start){
+        int candidate=start+1;
+        while(start>0) {
+            for(int test = 1 ; test<candidate; test ++){
+                if(candidate%test==0) continue;
+                if(candidate-1==test) return candidate;
+            }
+            candidate++;
+        }
+        return 0;
     }
 
     private static void testing(String actual, String expected) throws Exception{
