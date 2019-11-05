@@ -1,3 +1,4 @@
 out/**
 *.class
 resources/
+src/typescript/node_modules/
